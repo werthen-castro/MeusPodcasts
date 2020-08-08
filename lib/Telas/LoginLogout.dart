@@ -12,8 +12,6 @@ class LoginLogout extends StatefulWidget {
 }
 
 class _LoginLogoutState extends State<LoginLogout> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,26 +24,26 @@ class _LoginLogoutState extends State<LoginLogout> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(bottom: 100),
-                child: Image.asset('assets/imagens/logo.png'),
+                child: Image.asset('assets/images/logo.png'),
               ),
               ButtonApp(
-                  texto: 'Entrar com email',
-                  corBotao: Colors.white,
-                  corBodas: Colors.white,
-                  action: _irLogin,
-                  corText: Colors.black,
-                  tipoFonte: FontWeight.bold,
+                texto: 'Entrar com email',
+                corBotao: Colors.white,
+                corBodas: Colors.white,
+                action: _irLogin,
+                corText: Colors.black,
+                tipoFonte: FontWeight.bold,
               ),
               SizedBox(
                 height: 20,
               ),
               ButtonApp(
-                  texto: 'Criar conta',
-                  corBotao: Colors.white,
-                  corBodas: Colors.white,
-                  action: _irCadastro,
-                  corText: Colors.black,
-                  tipoFonte: FontWeight.bold,
+                texto: 'Criar conta',
+                corBotao: Colors.white,
+                corBodas: Colors.white,
+                action: _irCadastro,
+                corText: Colors.black,
+                tipoFonte: FontWeight.bold,
               ),
               SizedBox(
                 height: 50,
@@ -57,10 +55,18 @@ class _LoginLogoutState extends State<LoginLogout> {
                 action: _loginGoogle,
                 corText: Colors.black,
                 tipoFonte: FontWeight.bold,
-                image: Image.asset('assets/imagens/google_logo.png', height: 40,),
+                image: Image.asset(
+                  'assets/images/google_logo.png',
+                  height: 40,
+                ),
               ),
-              SizedBox(height: 70,),
-              Text('Termos de uso', style: TextStyle(color: Colors.white),)
+              SizedBox(
+                height: 70,
+              ),
+              Text(
+                'Termos de uso',
+                style: TextStyle(color: Colors.white),
+              )
             ],
           ),
         ),
@@ -68,7 +74,7 @@ class _LoginLogoutState extends State<LoginLogout> {
     );
   }
 
-  _loginGoogle(){
+  _loginGoogle() {
     signInWithGoogle().whenComplete(() {
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -80,16 +86,15 @@ class _LoginLogoutState extends State<LoginLogout> {
     });
   }
 
-  _irLogin(){
+  _irLogin() {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => Login()),
     );
   }
 
-  _irCadastro(){
+  _irCadastro() {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (_) => Cadastro()),
     );
   }
-
 }

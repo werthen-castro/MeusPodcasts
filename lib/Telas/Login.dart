@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:meuspodcast/Telas/Home.dart';
 import 'package:meuspodcast/bloc/login_bloc.dart';
 import 'package:meuspodcast/colors.dart';
-import 'package:meuspodcast/utis/Login_Google.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -11,15 +9,12 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
-  LoginBloc _loginBloc =  LoginBloc();
+  LoginBloc _loginBloc = LoginBloc();
   bool ob = true;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
   }
 
   @override
@@ -27,7 +22,10 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        title: Text('Login', style: TextStyle(color: Colors.white),),
+        title: Text(
+          'Login',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: AppColors.primaryColor,
         iconTheme: new IconThemeData(color: Colors.white),
       ),
@@ -43,7 +41,10 @@ class _LoginState extends State<Login> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(bottom: 5),
-                      child: Text('Email', style: TextStyle(color: Colors.white, fontSize: 19),),
+                      child: Text(
+                        'Email',
+                        style: TextStyle(color: Colors.white, fontSize: 19),
+                      ),
                     ),
                   ],
                 ),
@@ -55,7 +56,10 @@ class _LoginState extends State<Login> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(bottom: 5),
-                      child: Text('Senha', style: TextStyle(color: Colors.white, fontSize: 19),),
+                      child: Text(
+                        'Senha',
+                        style: TextStyle(color: Colors.white, fontSize: 19),
+                      ),
                     ),
                   ],
                 ),
@@ -70,21 +74,16 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Widget _logo(){
+  Widget _logo() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 45, top: 80 ),
+      padding: const EdgeInsets.only(bottom: 45, top: 80),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Image.asset('assets/imagens/microfone.png', height: 150, color: Colors.white,),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('Meus', style: TextStyle(color: Colors.white, fontSize: 25), textAlign: TextAlign.left,),
-              Text('Podcasts', style: TextStyle(color: Colors.white, fontSize: 45),),
-            ],
-          )
+          Image.asset(
+            'assets/images/logo.png',
+            height: 200,
+          ),
         ],
       ),
     );
@@ -107,15 +106,12 @@ class _LoginState extends State<Login> {
             ),
             onTap: () {
               print('ir esqueceu a senha !');
-
             },
           ),
         ),
       ],
     );
   }
-
-
 
   Widget _email() {
     return StreamBuilder(
@@ -124,21 +120,21 @@ class _LoginState extends State<Login> {
         return Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only( top: 8.0, bottom: 8.0),
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: TextField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
-                    hoverColor: Colors.white,
-                    fillColor: Colors.white,
-                    errorText: snapshot.error,
+                  hoverColor: Colors.white,
+                  fillColor: Colors.white,
+                  errorText: snapshot.error,
                 ),
                 onChanged: _loginBloc.changeEmail,
               ),
             ),
             !snapshot.hasError
                 ? SizedBox(
-              height: 22,
-            )
+                    height: 22,
+                  )
                 : Container()
           ],
         );
@@ -153,7 +149,7 @@ class _LoginState extends State<Login> {
         return Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only( top: 8.0, bottom: 8.0),
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: TextField(
                 keyboardType: TextInputType.text,
                 obscureText: ob,
@@ -162,7 +158,15 @@ class _LoginState extends State<Login> {
                   hoverColor: Colors.white,
                   fillColor: Colors.white,
                   suffixIcon: IconButton(
-                      icon: ob ? Icon(Icons.visibility, color: Colors.black,) : Icon(Icons.visibility_off, color: Colors.black,),
+                      icon: ob
+                          ? Icon(
+                              Icons.visibility,
+                              color: Colors.black,
+                            )
+                          : Icon(
+                              Icons.visibility_off,
+                              color: Colors.black,
+                            ),
                       onPressed: () {
                         setState(() {
                           ob = !ob;
@@ -174,8 +178,8 @@ class _LoginState extends State<Login> {
             ),
             !snapshot.hasError
                 ? SizedBox(
-              height: 22,
-            )
+                    height: 22,
+                  )
                 : Container()
           ],
         );
@@ -183,25 +187,25 @@ class _LoginState extends State<Login> {
     );
   }
 
-
   Widget _btnEntrar() {
     return StreamBuilder(
-      stream: _loginBloc.validLogin,
-      builder: (context, snapshot) {
-        return Container(
-          height: 60,
-          width: MediaQuery.of(context).size.width,
-          child: RaisedButton(
-            onPressed: snapshot.hasData ?  () async {
-                _loginBloc.login(context);
-            } : null,
-            child: Text(
-              'Entrar',
-              style: TextStyle(fontSize: 21),
+        stream: _loginBloc.validLogin,
+        builder: (context, snapshot) {
+          return Container(
+            height: 60,
+            width: MediaQuery.of(context).size.width,
+            child: RaisedButton(
+              onPressed: snapshot.hasData
+                  ? () async {
+                      _loginBloc.login(context);
+                    }
+                  : null,
+              child: Text(
+                'Entrar',
+                style: TextStyle(fontSize: 21),
+              ),
             ),
-          ),
-        );
-      }
-    );
+          );
+        });
   }
 }

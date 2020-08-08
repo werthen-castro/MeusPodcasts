@@ -1,10 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:meuspodcast/Telas/Login.dart';
-import 'package:meuspodcast/Telas/Spash.dart';
+import 'package:flutter/services.dart';
 
+import 'Telas/Home.dart';
+import 'Telas/LoginLogout.dart';
 import 'colors.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: AppColors.primaryColor,
+      statusBarBrightness: Brightness.light));
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseUser userLogado = await auth.currentUser();
+
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
@@ -23,6 +34,6 @@ void main() {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           textTheme: ButtonTextTheme.normal),
     ),
-    home: Spash(),
+    home: userLogado != null ? Home() : LoginLogout(),
   ));
 }

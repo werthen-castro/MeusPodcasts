@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:meuspodcast/Telas/Home.dart';
 import 'package:meuspodcast/bloc/cadastro_bloc.dart';
-import 'package:meuspodcast/bloc/login_bloc.dart';
 import 'package:meuspodcast/colors.dart';
-import 'package:meuspodcast/utis/Login_Google.dart';
 
 class Cadastro extends StatefulWidget {
   @override
@@ -12,8 +9,7 @@ class Cadastro extends StatefulWidget {
 }
 
 class _CadastroState extends State<Cadastro> {
-
-  CadastroBloc _cadastroBloc =  CadastroBloc();
+  CadastroBloc _cadastroBloc = CadastroBloc();
   bool ob = true;
 
   @override
@@ -21,7 +17,10 @@ class _CadastroState extends State<Cadastro> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        title: Text('Criar Conta', style: TextStyle(color: Colors.white),),
+        title: Text(
+          'Criar Conta',
+          style: TextStyle(color: Colors.white),
+        ),
         iconTheme: new IconThemeData(color: Colors.white),
         backgroundColor: AppColors.primaryColor,
       ),
@@ -37,7 +36,10 @@ class _CadastroState extends State<Cadastro> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(bottom: 5),
-                      child: Text('Email', style: TextStyle(color: Colors.white, fontSize: 19),),
+                      child: Text(
+                        'Email',
+                        style: TextStyle(color: Colors.white, fontSize: 19),
+                      ),
                     ),
                   ],
                 ),
@@ -49,7 +51,10 @@ class _CadastroState extends State<Cadastro> {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(bottom: 5),
-                      child: Text('Senha', style: TextStyle(color: Colors.white, fontSize: 19),),
+                      child: Text(
+                        'Senha',
+                        style: TextStyle(color: Colors.white, fontSize: 19),
+                      ),
                     ),
                   ],
                 ),
@@ -63,26 +68,36 @@ class _CadastroState extends State<Cadastro> {
     );
   }
 
-  Widget _logo(){
+  Widget _logo() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 45, top: 80 ),
+      padding: const EdgeInsets.only(bottom: 45, top: 80),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Image.asset('assets/imagens/microfone.png', height: 150, color: Colors.white,),
+          Image.asset(
+            'assets/images/microfone.png',
+            height: 150,
+            color: Colors.white,
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Meus', style: TextStyle(color: Colors.white, fontSize: 25), textAlign: TextAlign.left,),
-              Text('Podcasts', style: TextStyle(color: Colors.white, fontSize: 45),),
+              Text(
+                'Meus',
+                style: TextStyle(color: Colors.white, fontSize: 25),
+                textAlign: TextAlign.left,
+              ),
+              Text(
+                'Podcasts',
+                style: TextStyle(color: Colors.white, fontSize: 45),
+              ),
             ],
           )
         ],
       ),
     );
   }
-
 
   Widget _email() {
     return StreamBuilder(
@@ -91,7 +106,7 @@ class _CadastroState extends State<Cadastro> {
         return Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only( top: 8.0, bottom: 8.0),
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: TextField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
@@ -104,8 +119,8 @@ class _CadastroState extends State<Cadastro> {
             ),
             !snapshot.hasError
                 ? SizedBox(
-              height: 22,
-            )
+                    height: 22,
+                  )
                 : Container()
           ],
         );
@@ -120,7 +135,7 @@ class _CadastroState extends State<Cadastro> {
         return Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only( top: 8.0, bottom: 8.0),
+              padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
               child: TextField(
                 keyboardType: TextInputType.text,
                 obscureText: ob,
@@ -129,7 +144,15 @@ class _CadastroState extends State<Cadastro> {
                   hoverColor: Colors.white,
                   fillColor: Colors.white,
                   suffixIcon: IconButton(
-                      icon: ob ? Icon(Icons.visibility, color: Colors.black,) : Icon(Icons.visibility_off, color: Colors.black,),
+                      icon: ob
+                          ? Icon(
+                              Icons.visibility,
+                              color: Colors.black,
+                            )
+                          : Icon(
+                              Icons.visibility_off,
+                              color: Colors.black,
+                            ),
                       onPressed: () {
                         setState(() {
                           ob = !ob;
@@ -141,8 +164,8 @@ class _CadastroState extends State<Cadastro> {
             ),
             !snapshot.hasError
                 ? SizedBox(
-              height: 22,
-            )
+                    height: 22,
+                  )
                 : Container()
           ],
         );
@@ -158,16 +181,17 @@ class _CadastroState extends State<Cadastro> {
             height: 60,
             width: MediaQuery.of(context).size.width,
             child: RaisedButton(
-              onPressed: snapshot.hasData ?  () async {
-                _cadastroBloc.cadastrarUsuario(context);
-              } : null,
+              onPressed: snapshot.hasData
+                  ? () async {
+                      _cadastroBloc.cadastrarUsuario(context);
+                    }
+                  : null,
               child: Text(
                 'Cadastrar',
                 style: TextStyle(fontSize: 21),
               ),
             ),
           );
-        }
-    );
+        });
   }
 }

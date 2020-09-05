@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:meuspodcast/Telas/Login.dart';
-import 'package:meuspodcast/Telas/LoginLogout.dart';
+import 'package:meuspodcast/Telas/login.dart';
+import 'package:meuspodcast/Telas/sing_in_sing_up.dart';
 import 'package:meuspodcast/colors.dart';
 
 class DrawerApp extends StatelessWidget {
@@ -90,7 +90,7 @@ class DrawerApp extends StatelessWidget {
     FirebaseAuth auth = FirebaseAuth.instance;
     auth.signOut();
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => LoginLogout()),
+      MaterialPageRoute(builder: (_) => SingInSingUp()),
     );
   }
 

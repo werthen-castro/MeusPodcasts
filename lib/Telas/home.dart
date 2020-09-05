@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:meuspodcast/Telas/Baixados.dart';
-import 'package:meuspodcast/Telas/EmAlta.dart';
-import 'package:meuspodcast/Telas/Playlist.dart';
-import 'package:meuspodcast/Telas/Podcasts.dart';
-import 'package:meuspodcast/Telas/Search.dart';
+import 'package:meuspodcast/Telas/baixados.dart';
+import 'package:meuspodcast/Telas/em_alta.dart';
+import 'package:meuspodcast/Telas/playlist.dart';
+import 'package:meuspodcast/Telas/podcasts.dart';
+import 'package:meuspodcast/Telas/search.dart';
 import 'package:meuspodcast/colors.dart';
 import 'package:meuspodcast/widgets/Drawer.dart';
 

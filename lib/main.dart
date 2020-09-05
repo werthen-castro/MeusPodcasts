@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'Telas/Home.dart';
-import 'Telas/LoginLogout.dart';
+import 'Telas/home.dart';
+import 'Telas/sing_in_sing_up.dart';
 import 'colors.dart';
 
 Future<void> main() async {
@@ -34,6 +34,6 @@ Future<void> main() async {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           textTheme: ButtonTextTheme.normal),
     ),
-    home: userLogado != null ? Home() : LoginLogout(),
+    home: userLogado != null ? Home() : SingInSingUp(),
   ));
 }

@@ -33,11 +33,19 @@ dependencies:
   google_sign_in: ^4.5.1
   bloc_pattern: ^2.2.0+3
   rxdart: ^0.22.0
-  path_provider: ^1.6.5
+  path_provider: ^1.6.5 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.8.0 
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/microfone.png"
+  adaptative_icon_background: "#FFFFFF"
+  adaptative_icon_foreground: "assets/images/microfone.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

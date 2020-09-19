@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:meuspodcast/colors.dart';
 import 'package:meuspodcast/models/podcast.dart';
 
-import '../../keys.dart';
+import '../../key.dart';
 
 class TrendingPage extends StatefulWidget {
   @override
@@ -13,7 +13,6 @@ class TrendingPage extends StatefulWidget {
 }
 
 class _TrendingPageState extends State<TrendingPage> {
-
   List<Podcast> _podcasts = [];
   var data;
 
@@ -36,13 +35,9 @@ class _TrendingPageState extends State<TrendingPage> {
     }
   }
 
-
-
   _card(Podcast podcast) {
     return GestureDetector(
-      onTap: (){
-
-      },
+      onTap: () {},
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: Container(
@@ -56,28 +51,27 @@ class _TrendingPageState extends State<TrendingPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Object>(
-      future:  data,
-      builder: (context, snapshot) {
-        return Container(
-          color: AppColors.primaryColor,
-          child: snapshot.connectionState == ConnectionState.done
-              ? Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: GridView.count(
-                    crossAxisCount: 2,
-                    children: List.generate(_podcasts?.length, (index) {
-                      return Center(
-                        child: _card( _podcasts[index]),
-                      );
-                    })),
-              )
-              : Container(
-                  child: Center(
-                    child: CircularProgressIndicator(),
+        future: data,
+        builder: (context, snapshot) {
+          return Container(
+            color: AppColors.primaryColor,
+            child: snapshot.connectionState == ConnectionState.done
+                ? Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: GridView.count(
+                        crossAxisCount: 2,
+                        children: List.generate(_podcasts?.length, (index) {
+                          return Center(
+                            child: _card(_podcasts[index]),
+                          );
+                        })),
+                  )
+                : Container(
+                    child: Center(
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
-                ),
-        );
-      }
-    );
+          );
+        });
   }
 }

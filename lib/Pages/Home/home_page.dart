@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:meuspodcast/Telas/baixados.dart';
-import 'package:meuspodcast/Telas/em_alta.dart';
-import 'package:meuspodcast/Telas/playlist.dart';
-import 'package:meuspodcast/Telas/podcasts.dart';
-import 'package:meuspodcast/Telas/search.dart';
 import 'package:meuspodcast/colors.dart';
-import 'package:meuspodcast/widgets/Drawer.dart';
+import 'package:meuspodcast/widgets/drawer.dart';
+
+import 'downloads_page.dart';
+import 'trending_page.dart';
+import 'playlist_page.dart';
+import 'podcasts_page.dart';
+import '../search_page.dart';
 
 
-class Home extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   int selectedIndex = 0;
 
   List<Widget> _abas = <Widget>[
-    Podcasts(),
-    Playlist(),
-    Baixados(),
-    EmAlta(),
+    PodcastsPage(),
+    PlaylistPage(),
+    DownloadsPage(),
+    TrendingPage(),
   ];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +37,7 @@ class _HomeState extends State<Home> {
           GestureDetector(
             onTap: (){
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => Search()),
+                MaterialPageRoute(builder: (_) => SearchPage()),
               );
             },
             child: Padding(

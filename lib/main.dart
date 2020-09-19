@@ -2,16 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'Telas/home.dart';
-import 'Telas/sing_in_sing_up.dart';
+import 'Pages/Home/home_page.dart';
+import 'Pages/sing_in_sing_up_page.dart';
 import 'colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: AppColors.primaryColor,
-      statusBarBrightness: Brightness.light));
+    statusBarColor: AppColors.primaryColor,
+  ));
 
   FirebaseAuth auth = FirebaseAuth.instance;
   FirebaseUser userLogado = await auth.currentUser();
@@ -34,6 +34,6 @@ Future<void> main() async {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           textTheme: ButtonTextTheme.normal),
     ),
-    home: userLogado != null ? Home() : SingInSingUp(),
+    home: userLogado != null ? HomePage() : SingInSingUp(),
   ));
 }

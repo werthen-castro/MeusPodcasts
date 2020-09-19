@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:meuspodcast/Telas/login.dart';
-import 'package:meuspodcast/Telas/sing_in_sing_up.dart';
+import 'package:meuspodcast/Pages/sing_in_sing_up_page.dart';
 import 'package:meuspodcast/colors.dart';
 
 class DrawerApp extends StatelessWidget {

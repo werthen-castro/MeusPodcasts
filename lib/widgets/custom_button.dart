@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meuspodcast/colors.dart';
 
-class ButtonApp extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final String texto;
   final Color corBotao;
   final Color corBodas;
@@ -14,7 +13,7 @@ class ButtonApp extends StatelessWidget {
   final Image image;
   bool ativo;
 
-  ButtonApp({
+  CustomButton({
     @required this.texto,
     @required this.corBotao,
     @required this.corBodas,
@@ -23,7 +22,7 @@ class ButtonApp extends StatelessWidget {
     this.tipoFonte = FontWeight.normal,
     this.arrendondamento = 5.0,
     this.largura,
-    this.altura = 60,
+    this.altura = 55,
     this.image,
     this.ativo = true
   });
@@ -40,15 +39,20 @@ class ButtonApp extends StatelessWidget {
             ),
             height: altura,
             width:  largura == null ? MediaQuery.of(context).size.width : largura,
-            child:  Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                image == null ?  Container() : Padding(
-                  padding: const EdgeInsets.only(right: 30),
-                  child: image,
+            child:  Center(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    image == null ?  Container() : Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: image,
+                    ),
+                    Text(texto, style: TextStyle(color: corText, fontSize: 18, fontWeight: tipoFonte),),
+                  ],
                 ),
-                Center(child: Text(texto, style: TextStyle(color: corText, fontSize: 20, fontWeight: tipoFonte),)),
-              ],
+              ),
             ),
           ),
         );

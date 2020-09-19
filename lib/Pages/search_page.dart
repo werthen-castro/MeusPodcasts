@@ -8,12 +8,12 @@ import 'package:meuspodcast/models/podcast.dart';
 
 import '../keys.dart';
 
-class Search extends StatefulWidget {
+class SearchPage extends StatefulWidget {
   @override
-  _SearchState createState() => _SearchState();
+  _SearchPageState createState() => _SearchPageState();
 }
 
-class _SearchState extends State<Search> {
+class _SearchPageState extends State<SearchPage> {
 
   String _search = '';
   int _offset = 0;

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meuspodcast/Telas/cadastro.dart';
-import 'package:meuspodcast/Telas/home.dart';
-import 'package:meuspodcast/Telas/login.dart';
 import 'package:meuspodcast/colors.dart';
 import 'package:meuspodcast/utis/Login_Google.dart';
-import 'package:meuspodcast/widgets/ButtonApp.dart';
+import 'package:meuspodcast/widgets/custom_button.dart';
+
+import 'sing_up_page.dart';
+import 'Home/home_page.dart';
+import 'sing_in_page.dart';
 
 class SingInSingUp extends StatefulWidget {
   @override
@@ -24,10 +25,10 @@ class _SingInSingUpState extends State<SingInSingUp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 70),
+                  padding: const EdgeInsets.only(bottom: 60, top: 20),
                   child: Image.asset('assets/images/logo.png'),
                 ),
-                ButtonApp(
+                CustomButton(
                   texto: 'Entrar com email',
                   corBotao: Colors.white,
                   corBodas: Colors.white,
@@ -36,9 +37,9 @@ class _SingInSingUpState extends State<SingInSingUp> {
                   tipoFonte: FontWeight.bold,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
-                ButtonApp(
+                CustomButton(
                   texto: 'Criar conta',
                   corBotao: Colors.white,
                   corBodas: Colors.white,
@@ -47,9 +48,9 @@ class _SingInSingUpState extends State<SingInSingUp> {
                   tipoFonte: FontWeight.bold,
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 35,
                 ),
-                ButtonApp(
+                CustomButton(
                   texto: 'Entrar com conta Google',
                   corBotao: Colors.white,
                   corBodas: Colors.white,
@@ -58,11 +59,12 @@ class _SingInSingUpState extends State<SingInSingUp> {
                   tipoFonte: FontWeight.bold,
                   image: Image.asset(
                     'assets/images/google_logo.png',
-                    height: 40,
+                    height: 30,
                   ),
                 ),
+
                 SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 Text(
                   'Termos de uso',
@@ -81,7 +83,7 @@ class _SingInSingUpState extends State<SingInSingUp> {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) {
-            return Home();
+            return HomePage();
           },
         ),
       );
@@ -90,13 +92,13 @@ class _SingInSingUpState extends State<SingInSingUp> {
 
   _irLogin() {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => Login()),
+      MaterialPageRoute(builder: (_) => SingInPage()),
     );
   }
 
   _irCadastro() {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => Cadastro()),
+      MaterialPageRoute(builder: (_) => SingUpPage()),
     );
   }
 }

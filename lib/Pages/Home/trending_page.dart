@@ -5,14 +5,14 @@ import 'package:http/http.dart' as http;
 import 'package:meuspodcast/colors.dart';
 import 'package:meuspodcast/models/podcast.dart';
 
-import '../keys.dart';
+import '../../keys.dart';
 
-class EmAlta extends StatefulWidget {
+class TrendingPage extends StatefulWidget {
   @override
-  _EmAltaState createState() => _EmAltaState();
+  _TrendingPageState createState() => _TrendingPageState();
 }
 
-class _EmAltaState extends State<EmAlta> {
+class _TrendingPageState extends State<TrendingPage> {
 
   List<Podcast> _podcasts = [];
   var data;
@@ -36,12 +36,19 @@ class _EmAltaState extends State<EmAlta> {
     }
   }
 
-  _card(imagem) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Container(
-        color: AppColors.primaryColor,
-        child: Image.network(imagem),
+
+
+  _card(Podcast podcast) {
+    return GestureDetector(
+      onTap: (){
+
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          color: AppColors.primaryColor,
+          child: Image.network(podcast.thumbnail),
+        ),
       ),
     );
   }
@@ -60,7 +67,7 @@ class _EmAltaState extends State<EmAlta> {
                     crossAxisCount: 2,
                     children: List.generate(_podcasts?.length, (index) {
                       return Center(
-                        child: _card( _podcasts[index].thumbnail),
+                        child: _card( _podcasts[index]),
                       );
                     })),
               )

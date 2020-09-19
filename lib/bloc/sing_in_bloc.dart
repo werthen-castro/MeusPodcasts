@@ -2,54 +2,41 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:meuspodcast/Telas/home.dart';
+import 'file:///D:/Werthen/MeusPodcasts/lib/Pages/Home/home_page.dart';
 import 'package:meuspodcast/utis/Validators.dart';
 import 'package:rxdart/rxdart.dart';
 
-class CadastroBloc with Validators {
+class LoginBloc with Validators {
 
   final _email = BehaviorSubject<String>();
   get email => _email.stream.transform(validateEmail);
   get changeEmail => _email.add;
 
   final _senha = BehaviorSubject<String>();
-  get senha => _senha.stream.transform(validateCadastroSenha);
+  get senha => _senha.stream.transform(validateSenha);
   get changeSenha => _senha.add;
 
-  get validCastro => Observable.combineLatest(
+  get validLogin => Observable.combineLatest(
     <Stream>[email, senha],
         (values) => true,
   );
 
-  dispose(){
-    _senha.close();
+  dispose() {
     _email.close();
+    _senha.close();
   }
 
-  cadastrarUsuario(context) async {
-
+  login(context) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     auth
-        .createUserWithEmailAndPassword(
-        email: _email.value.trim(), password: _senha.value.trim())
-        .then((firebaseUser) {
-      print("Sucesso ao criar usuario");
-
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => Home()),
+        .signInWithEmailAndPassword(email: _email.value.trim(), password: _senha.value.trim())
+        .then((firebaseUSer) {
+      print("Login com sucesso");
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => HomePage()),
       );
     }).catchError((error) {
-      print("Erro ao criar usuario");
+      print("Erro ao logar: " + error.toString());
     });
   }
-
-
-
-
-
-
-
-
-
-
 }

@@ -4,7 +4,7 @@ import 'package:meuspodcast/widgets/drawer.dart';
 
 import 'downloads_page.dart';
 import 'trending_page.dart';
-import 'playlist_page.dart';
+import 'your_library_page.dart';
 import 'podcasts_page.dart';
 import '../search_page.dart';
 
@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _abas = <Widget>[
     PodcastsPage(),
-    PlaylistPage(),
+    YourLibrary(),
     DownloadsPage(),
     TrendingPage(),
   ];

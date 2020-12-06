@@ -15,8 +15,9 @@ class _PodcastPageState extends State<PodcastPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.podcast.title, style: TextStyle(color: Colors.white),),
+        title: Text(widget.podcast.title ?? '', style: TextStyle(color: Colors.white),),
       ),
     );
   }
 }
+ 

@@ -6,6 +6,7 @@ import 'package:meuspodcast/colors.dart';
 import 'package:meuspodcast/models/podcast.dart';
 
 import '../../key.dart';
+import '../podcast_page.dart';
 
 class TrendingPage extends StatefulWidget {
   @override
@@ -37,7 +38,11 @@ class _TrendingPageState extends State<TrendingPage> {
 
   _card(Podcast podcast) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => PodcastPage(podcast)),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: Container(

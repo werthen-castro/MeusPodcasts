@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.library_music),
-            title: Text('Playlist',),
+            title: Text('Biblioteca',),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.file_download, ),

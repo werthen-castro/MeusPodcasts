@@ -6,7 +6,7 @@ import 'package:meuspodcast/bloc/trending_bloc.dart';
 import 'package:meuspodcast/colors.dart';
 import 'package:meuspodcast/models/podcast.dart';
 
-import '../../key.dart';
+import '../../config.dart';
 import '../podcast_page.dart';
 
 class TrendingPage extends StatefulWidget {
@@ -36,29 +36,34 @@ class _TrendingPageState extends State<TrendingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return  StreamBuilder(
-            stream: _trendingBloc.podcasts,
-            builder: (context, snapshot) {
-              return Container(
-                color: AppColors.primaryColor,
-                child: snapshot.hasData
-                    ? Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: GridView.count(
-                            crossAxisCount: 2,
-                            children: List.generate(snapshot?.data.length, (index) {
-                              return Center(
-                                child: _card(snapshot.data[index] ),
-                              );
-                            })),
-                      )
-                    : Container(
-                        child: Center(
-                          child: CircularProgressIndicator(),
+
+    return  RefreshIndicator(
+      onRefresh: _trendingBloc.getBestPodcasts,
+      child: StreamBuilder(
+              stream: _trendingBloc.podcasts,
+              builder: (context, snapshot) {
+                return Container(
+                  color: AppColors.primaryColor,
+                  child: snapshot.hasData
+                      ? Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: GridView.count(
+                             // controller: _scrollController,
+                              crossAxisCount: 2,
+                              children: List.generate(snapshot.data.length, (index) {
+                                return Center(
+                                  child: _card(snapshot.data[index] ),
+                                );
+                              })),
+                        )
+                      : Container(
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
                         ),
-                      ),
-              );
-            }
-          );
+                );
+              }
+            ),
+    );
   }
 }

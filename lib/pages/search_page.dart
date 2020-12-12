@@ -6,7 +6,7 @@ import 'package:meuspodcast/colors.dart';
 import 'package:http/http.dart' as http;
 import 'package:meuspodcast/models/podcast.dart';
 
-import '../key.dart';
+import '../config.dart';
 
 class SearchPage extends StatefulWidget {
   @override

@@ -1,11 +1,10 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:meuspodcast/config.dart';
 import 'package:meuspodcast/models/podcast.dart';
 import 'package:meuspodcast/utis/api_connector.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:http/http.dart' as http;
-
 class TrendingBloc{
 
   TrendingBloc(){
@@ -27,6 +26,7 @@ class TrendingBloc{
         "${urlBaseApi}best_podcasts?limit=$limit&page=${_offset.value}&$region", headers: headersListenApi
     );
     var data = json.decode(response.body.toString());
+
 
     for (int i = 0; i < data['podcasts'].length; i++) {
       listPodcasts.add(Podcast.map(data['podcasts'][i]));

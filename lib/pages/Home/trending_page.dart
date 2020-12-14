@@ -1,14 +1,11 @@
-import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:meuspodcast/bloc/trending_bloc.dart';
 import 'package:meuspodcast/colors.dart';
 import 'package:meuspodcast/models/podcast.dart';
 
-import '../../config.dart';
 import '../podcast_page.dart';
-
 class TrendingPage extends StatefulWidget {
   @override
   _TrendingPageState createState() => _TrendingPageState();
@@ -20,6 +17,8 @@ class _TrendingPageState extends State<TrendingPage> {
   _card(Podcast podcast) {
     return GestureDetector(
       onTap: () {
+        print('cliquei !!!');
+        inspect(podcast);
         Navigator.of(context).push(
           MaterialPageRoute(builder: (_) => PodcastPage(podcast)),
         );
@@ -39,7 +38,7 @@ class _TrendingPageState extends State<TrendingPage> {
 
     return  RefreshIndicator(
       onRefresh: _trendingBloc.getBestPodcasts,
-      child: StreamBuilder(
+      child: StreamBuilder<List<Podcast>>(
               stream: _trendingBloc.podcasts,
               builder: (context, snapshot) {
                 return Container(
@@ -48,7 +47,6 @@ class _TrendingPageState extends State<TrendingPage> {
                       ? Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: GridView.count(
-                             // controller: _scrollController,
                               crossAxisCount: 2,
                               children: List.generate(snapshot.data.length, (index) {
                                 return Center(

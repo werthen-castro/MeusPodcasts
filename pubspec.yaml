@@ -33,7 +33,10 @@ dependencies:
   google_sign_in: ^4.5.1
   bloc_pattern: ^2.2.0+3
   rxdart: ^0.22.0
-  path_provider: ^1.6.5 
+  path_provider: ^1.6.5
+  flutter_sound: ^6.0.0 
+  permission_handler: ^5.0.1+1
+  flutter_icons: ^1.1.0
 
 dev_dependencies:
   flutter_test:

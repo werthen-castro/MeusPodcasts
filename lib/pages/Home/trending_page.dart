@@ -13,24 +13,25 @@ class TrendingPage extends StatefulWidget {
 
 class _TrendingPageState extends State<TrendingPage> {
   TrendingBloc _trendingBloc = TrendingBloc();
+  ScrollController _scrollController = ScrollController();
+  bool controller = true;
 
-  _card(Podcast podcast) {
-    return GestureDetector(
-      onTap: () {
-        print('cliquei !!!');
-        inspect(podcast);
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (_) => PodcastPage(podcast)),
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: Container(
-          color: AppColors.primaryColor,
-          child: Image.network(podcast.thumbnail),
-        ),
-      ),
-    );
+ @override
+  void initState() {
+
+    _scrollController.addListener(() {
+      if(_scrollController.position.pixels >= _scrollController.position.maxScrollExtent * 0.9 && controller){
+        log('nova request');
+
+         controller = false;
+
+        Future.delayed(const Duration(milliseconds: 2000), () {
+            controller = true;
+        });
+         _trendingBloc.getBestPodcasts();
+      } 
+    });
+    super.initState();
   }
 
   @override
@@ -47,6 +48,7 @@ class _TrendingPageState extends State<TrendingPage> {
                       ? Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: GridView.count(
+                            controller: _scrollController,
                               crossAxisCount: 2,
                               children: List.generate(snapshot.data.length, (index) {
                                 return Center(
@@ -62,6 +64,26 @@ class _TrendingPageState extends State<TrendingPage> {
                 );
               }
             ),
+    );
+  }
+
+  
+  _card(Podcast podcast) {
+    return GestureDetector(
+      onTap: () {
+        print('cliquei !!!');
+        inspect(podcast);
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => PodcastPage(podcast)),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Container(
+          color: AppColors.primaryColor,
+          child: Image.network(podcast.thumbnail),
+        ),
+      ),
     );
   }
 }
